@@ -11,3 +11,5 @@ The processed GCN outputs are then given to Dense layers for final processing an
 Here each protein sequence represent a node and the edges form between the families (but could change with the choice of the similarity score threshold).
 
 Note that this model is not ready to accept inputs and make predictions. While it could be done quickly, the model training part seems to be of first priority for now.
+
+Note: Testing has been done for training and validation only (metric: accuracy).
