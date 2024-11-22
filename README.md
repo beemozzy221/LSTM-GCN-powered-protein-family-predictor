@@ -14,7 +14,7 @@ Note that this model is not ready to accept inputs and make predictions. While i
 
 Note: Testing has been done for training and validation only (metric: accuracy).
 
-IMPORTANT: NOTICE THAT THE MODEL DOES NOT HAVE THE ENCODED NODE FEATURES THAT ARE TO BE GIVEN TO THE LSTM MODEL due to its large size. Instead, the main file can run on processed node features (lstm_padded_array) that are already processed and uploaded. So the main file (mainfileanddataprep) wil not work as the encoded node features are absent. The encoded node features will be uploaded soon and the model should work soon.
+IMPORTANT: NOTICE THAT THE MODEL DOES NOT HAVE THE ENCODED NODE FEATURES THAT ARE TO BE GIVEN TO THE LSTM MODEL due to its large size. Instead, the main file can run on processed node features (lstm_padded_array) that are already processed and uploaded. So the main file (mainfileanddataprep) should work as expected.
 
 !!!!!MODEL ARE NOT OPTIMIZED!!!!! (epochs, batch size, choice of optimizers, loss etc could affect the model performance).
 
