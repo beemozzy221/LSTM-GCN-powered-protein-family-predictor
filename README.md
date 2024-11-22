@@ -18,4 +18,6 @@ IMPORTANT: NOTICE THAT THE MODEL DOES NOT HAVE THE ENCODED NODE FEATURES THAT AR
 
 !!!!!MODEL ARE NOT OPTIMIZED!!!!! (epochs, batch size, choice of optimizers, loss etc could affect the model performance).
 
+This is a model built by a 3rd year undergraduate of University of Colombo, Faculty of Science doing Bioinformatics. Expect the coding to be shabby and substandard to the conventions followed by the wider coding community.
+
 
