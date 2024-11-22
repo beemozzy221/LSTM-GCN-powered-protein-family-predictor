@@ -16,7 +16,7 @@ Note: Testing has been done for training and validation only (metric: accuracy).
 
 IMPORTANT: NOTICE THAT THE MODEL DOES NOT HAVE THE ENCODED NODE FEATURES THAT ARE TO BE GIVEN TO THE LSTM MODEL due to its large size. Instead, the main file can run on processed node features (lstm_padded_array) that are already processed and uploaded. So the main file (mainfileanddataprep) should work as expected.
 
-!!!!!MODEL ARE NOT OPTIMIZED!!!!! (epochs, batch size, choice of optimizers, loss etc could affect the model performance).
+!!!!!MODEL IS NOT OPTIMIZED!!!!! (epochs, batch size, choice of optimizers, loss etc could affect the model performance).
 
 EDIT 1: This is a model built by a 3rd year undergraduate of University of Colombo, Faculty of Science doing Bioinformatics. Expect the coding to be shabby and substandard to the conventions followed by the wider coding community.
 
