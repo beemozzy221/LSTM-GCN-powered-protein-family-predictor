@@ -9,3 +9,5 @@ The processed data are now the node features for each element in the batch. The 
 The processed GCN outputs are then given to Dense layers for final processing and are used then for the final prediction. Loss functions and optimizers are changeable to train the model and make predictions. 
 
 Here each protein sequence represent a node and the edges form between the families (but could change with the choice of the similarity score threshold).
+
+Note that this model is not ready to accept inputs and make predictions. While it could be done quickly, the model training part seems to be of first priority for now.
