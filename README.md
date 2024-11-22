@@ -20,6 +20,8 @@ IMPORTANT: NOTICE THAT THE MODEL DOES NOT HAVE THE ENCODED NODE FEATURES THAT AR
 
 EDIT 1: This is a model built by a 3rd year undergraduate of University of Colombo, Faculty of Science doing Bioinformatics. Expect the coding to be shabby and substandard to the conventions followed by the wider coding community.
 
-EDIT 2: graphconvo.py and model.py codes are taken from keras documentation with minor modificaitons.
+EDIT 2: Graphconvo.py and model.py codes are taken from keras documentation with minor modificaitons.
+
+EDIT 3: Subset of protein sequences are aligned using MUSCLE.
 
 
