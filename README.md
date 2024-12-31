@@ -24,4 +24,9 @@ EDIT 2: Graphconvo.py and model.py codes are taken from keras documentation with
 
 EDIT 3: Subset of protein sequences are aligned using MUSCLE.
 
+MAJOR UPDATE TO CODES: 31/12/2024:
+
+The codes have been changed to match with the more rigorous style of coding. Large amounts of edits have been done to make the codes more robust. The general model architecture has also been changed to simplify the training process and experiment with different architectures in the future.
+
+
 
