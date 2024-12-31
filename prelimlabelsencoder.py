@@ -8,7 +8,7 @@ class LabelsEncode:
     def labels2onehot(self):
         vocab_prelim_size = len(self.pids)
         vocab_prelim = dict(zip(self.pids, range(vocab_prelim_size)))
-        vocab_size=len(vocab_prelim)
+        vocab_size = len(vocab_prelim)
         vocab_embed = dict(zip(vocab_prelim.keys(), range(vocab_size)))
         
         # Convert vocab to one-hot
