@@ -28,5 +28,7 @@ MAJOR UPDATE TO CODES: 31/12/2024:
 
 The codes have been changed to match with the more rigorous style of coding. Large amounts of edits have been done to make the codes more robust. The general model architecture has also been changed to simplify the training process and experiment with different architectures in the future. PREDICT FUNCTIONALITY IS STILL UNDER CONSTRUCTION.
 
+Auxillary files doesn't have the encoded protein features. It could be found in this drive link: https://drive.google.com/file/d/1GozAiYDZjVksLqAIYs_nLGq2ka9Nbpjy/view
+
 
 
