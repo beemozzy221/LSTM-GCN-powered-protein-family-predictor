@@ -35,5 +35,6 @@ Auxillary files doesn't have the encoded protein features. It could be found in 
 The predict functionality has been created based on the model training on 255 sequences across 106 protein families. The model only takes in sequences of length less than 1500 amino acids. 
 To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed as a bar graph. 
 
+Please ensure the copy the "protein_encoded_sequences.npy" from the above link and place it in folder "auxillaryfiles" for functionality of the model.
 
 
