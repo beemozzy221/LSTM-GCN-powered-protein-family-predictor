@@ -27,7 +27,7 @@ gnn_weights = r"savedweights/gnnweights.weights.h5"
 lstm_weights = r"savedweights/lstmweights.weights.h5"
 predict_folder_path = r"predict/predict.fasta"
 source_score_matrix = np.load("auxillaryfiles/scorematrix.npy")
-source_protein_seq_filepath = r"proteinfastaseq/unalignedproseq.fasta"
+source_protein_seq_filepath = r"proteinfastaseq/alignedproseq.fasta"
 concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy")
 
 #Encode the to-be-predicted FASTA file
