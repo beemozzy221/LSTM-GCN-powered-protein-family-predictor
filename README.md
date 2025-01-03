@@ -28,13 +28,18 @@ MAJOR UPDATE TO CODES: 31/12/2024:
 
 The codes have been changed to match with the more rigorous style of coding. Large amounts of edits have been done to make the codes more robust. The general model architecture has also been changed to simplify the training process and experiment with different architectures in the future. PREDICT FUNCTIONALITY IS STILL UNDER CONSTRUCTION.
 
-Auxillary files doesn't have the encoded protein features. It could be found in this drive link: https://drive.google.com/file/d/1GozAiYDZjVksLqAIYs_nLGq2ka9Nbpjy/view
+"auxillaryfiles" doesn't have the encoded protein features: "protein_encoded_features.npy". It could be found in this drive link: https://drive.google.com/file/d/1GozAiYDZjVksLqAIYs_nLGq2ka9Nbpjy/view
 
 # Predict functionality
 
 The predict functionality has been created based on the model training on 255 sequences across 106 protein families. The model only takes in sequences of length less than 1500 amino acids. 
-To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed as a bar graph. 
+To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed. 
 
 Please ensure the copy the "protein_encoded_sequences.npy" from the above link and place it in folder "auxillaryfiles" for functionality of the model.
+
+# Future
+
+The developer is planning on removing the requirement of the removing the requirement of aligning the sequences for the input sequences during the training phase.
+
 
 
