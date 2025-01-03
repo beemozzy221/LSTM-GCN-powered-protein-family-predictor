@@ -40,6 +40,7 @@ Please ensure the copy the "protein_encoded_sequences.npy" from the above link a
 # Future
 
 The developer is planning on removing the requirement of the removing the requirement of aligning the sequences for the input sequences during the training phase.
+Any problems, please contact: beemozzy221@gmail.com
 
 
 
