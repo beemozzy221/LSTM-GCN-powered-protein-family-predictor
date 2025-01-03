@@ -60,7 +60,7 @@ def create_score_unaligned (target_sequence, comparison_sequence):
                                 comparison_sequence, match_score, mismatch_penalty,
                                 gap_open, gap_extend)
 
-    return aligner.score(alignments[0][0], alignments[0][1])
+    return aligner.score(str(alignments[0][0]), str(alignments[0][1]))
 
 def create_score_matrix_unaligned(target_fasta, source_fasta):
 
