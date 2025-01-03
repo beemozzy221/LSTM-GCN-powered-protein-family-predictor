@@ -54,12 +54,13 @@ def create_score_unaligned (target_sequence, comparison_sequence):
     mismatch_penalty = -1
     gap_open = -0.5
     gap_extend = -0.1
+    aligner = Align.PairwiseAligner(match_score=1.0)
 
     alignments = align.globalms(target_sequence,
                                 comparison_sequence, match_score, mismatch_penalty,
                                 gap_open, gap_extend)
 
-    return alignments[0][2]
+    return aligner.score(alignments[0][0], alignments[0][1])
 
 def create_score_matrix_unaligned(target_fasta, source_fasta):
 
