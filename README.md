@@ -30,5 +30,10 @@ The codes have been changed to match with the more rigorous style of coding. Lar
 
 Auxillary files doesn't have the encoded protein features. It could be found in this drive link: https://drive.google.com/file/d/1GozAiYDZjVksLqAIYs_nLGq2ka9Nbpjy/view
 
+# Predict functionality
+
+The predict functionality has been created based on the model training on 255 sequences across 106 protein families. The model only takes in sequences of length less than 1500 amino acids. 
+To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed as a bar graph. 
+
 
 
