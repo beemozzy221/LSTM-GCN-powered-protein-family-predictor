@@ -69,7 +69,7 @@ model.fit(
 )
 
 #Save the model
-#model.save_weights(gnn_saved_weights)
+model.save_weights(gnn_saved_weights)
 
 #Plotting
 y_pred_prob = model.predict(train_indices)
