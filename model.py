@@ -60,7 +60,7 @@ class GNNNodeClassifier(tf.keras.Model):
         # Scale edge_weights to sum to 1.
         self.edge_weights = self.edge_weights / tf.math.reduce_sum(self.edge_weights)
         #Create preprocess layer
-        self.preprocess = create_ffn(hidden_units, dropout_rate, name = "preprocess")
+        #self.preprocess = create_ffn(hidden_units, dropout_rate, name = "preprocess")
 
         # Create the first GraphConv layer.
         self.conv1 = GraphConvLayer(
@@ -107,6 +107,7 @@ class GNNNodeClassifier(tf.keras.Model):
         x4 = self.postprocess(x3)
         
         # Fetch node embeddings for the input node_indices
+        input_node_indices = tf.cast(input_node_indices, dtype="int32")
         node_embeddings = tf.gather(x4, input_node_indices)
 
         # Compute logits
