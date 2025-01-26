@@ -35,7 +35,7 @@ To predict, simply post the FASTA file on the predict folder and run the predict
 
 Please ensure the download the files "proteinfastaseq" and "auxillaryfiles" and place it in the folder. The link:
 https://drive.google.com/drive/folders/1ugWmEzo6IXh2DTH_PnVapBnsRsB5hWa3?usp=sharing
-
+https://drive.google.com/drive/folders/1GIQNTwaBX_ckdOt02rTQ8gEXeA5VMbKq?usp=sharing
 # Future
 
 The developer is planning on removing the requirement of the removing the requirement of aligning the sequences for the input sequences during the training phase.
