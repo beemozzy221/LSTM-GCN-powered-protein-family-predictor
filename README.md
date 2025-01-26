@@ -33,8 +33,9 @@ The codes have been changed to match with the more rigorous style of coding. Lar
 The predict functionality has been created based on the model training on 255 sequences across 106 protein families. The model only takes in sequences of length less than 1847 amino acids (train length of the sequences). 
 To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed. 
 
-Please ensure the download the files "proteinfastaseq" and "auxillaryfiles" and place it in the folder. The link:
+Please ensure the download the files "proteinfastaseq", "auxillaryfiles" and "unaligned_protein_families", and place it in the folder. The link:
 https://drive.google.com/drive/folders/1GIQNTwaBX_ckdOt02rTQ8gEXeA5VMbKq?usp=sharing
+
 # Future
 
 The developer is planning on removing the requirement of the removing the requirement of aligning the sequences for the input sequences during the training phase.
