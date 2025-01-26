@@ -34,7 +34,6 @@ The predict functionality has been created based on the model training on 255 se
 To predict, simply post the FASTA file on the predict folder and run the predict.py. The results will be generated as a bar graph with the most probable five families being displayed. 
 
 Please ensure the download the files "proteinfastaseq" and "auxillaryfiles" and place it in the folder. The link:
-https://drive.google.com/drive/folders/1ugWmEzo6IXh2DTH_PnVapBnsRsB5hWa3?usp=sharing
 https://drive.google.com/drive/folders/1GIQNTwaBX_ckdOt02rTQ8gEXeA5VMbKq?usp=sharing
 # Future
 
