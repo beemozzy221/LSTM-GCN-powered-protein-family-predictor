@@ -1,16 +1,19 @@
+import os
+
 import numpy as np
 import adjscoregenerator
 from profeatandlabelsencoder import seq2onehot
 
 class PredictProcess:
 
-    def __init__(self, predict_protein_features, concatenate_protein_array, source_score_matrix,
-                 predict_protein_seq_filepath, source_protein_seq_filepath):
+    def __init__(self, predict_protein_features, concatenate_protein_array, adjacency_matrix,
+                 predict_protein_seq_filepath, source_protein_seq_filepath, protein_family_folder):
         self.protein_features = predict_protein_features
         self.concatenate_protein_array = concatenate_protein_array
-        self.source_score_matrix = source_score_matrix
         self.predict_filepath = predict_protein_seq_filepath
         self.source_filepath = source_protein_seq_filepath
+        self.adjacency_matrix = adjacency_matrix
+        self.protein_fam_folder = protein_family_folder
 
         print("Processor initialized")
 
@@ -40,13 +43,27 @@ class PredictProcess:
             print(f"Predict protein length exceeds trained proteins' length of {self.concatenate_protein_array.shape[1]}")
 
     def adj_matrix (self):
-        predict_score_matrix = np.pad(self.source_score_matrix, ((0, 1), (0, 1)), mode='constant', constant_values=0)
-        predict_row = adjscoregenerator.create_score_matrix_unaligned(self.predict_filepath, self.source_filepath)
-        predict_row = np.append(predict_row, np.array([0]), axis=0)
-        predict_score_matrix[-1, :] = predict_row
-        predict_score_matrix[:, -1] = predict_row.T
+        predict_adj_matrix = np.pad(self.adjacency_matrix, ((0, 1), (0, 1)), mode='constant', constant_values=0)
 
-        return adjscoregenerator.compute_adjacency_matrix(predict_score_matrix, 1400)
+        predict_row = [adjscoregenerator.create_score_matrix_unaligned(self.predict_filepath, f"{self.protein_fam_folder}"
+                                                                                              f"/{protein_fam}/unalignedproseq.fasta")
+                       for protein_fam in os.listdir(self.protein_fam_folder)]
+        predict_row = [x for x in predict_row if x is not None]
+        homogenized_predict_row = [ent for pro_fam in predict_row for ent in pro_fam]
+        homogenized_predict_row = np.append(homogenized_predict_row, np.array([0]))
+
+        w_mask = np.ones(self.adjacency_matrix.shape[0]+1)
+        predict_row = (homogenized_predict_row >= 1400) * w_mask
+
+        predict_adj_matrix[-1, :] = predict_row
+        predict_adj_matrix[:, -1] = predict_row.T
+
+        return predict_adj_matrix
+
+
+
+
+
 
 
 

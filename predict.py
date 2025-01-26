@@ -1,4 +1,6 @@
 import os
+
+
 os.environ["KERAS_BACKEND"] = "tensorflow"
 
 import numpy as np
@@ -26,9 +28,10 @@ num_classes = 106
 gnn_weights = r"savedweights/gnnweights.weights.h5"
 lstm_weights = r"savedweights/lstmweights.weights.h5"
 predict_folder_path = r"predict/predict.fasta"
-source_score_matrix = np.load("auxillaryfiles/scorematrix.npy")
 source_protein_seq_filepath = r"proteinfastaseq/alignedproseq.fasta"
-concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy")
+protein_family_folder = r"unaligned_protein_families"
+concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_pickle=True)
+adjacency_matrix = np.load(r"auxillaryfiles/newadjmatrix.npy")
 
 #Encode the to-be-predicted FASTA file
 fasta_sequences = SeqIO.parse(open(predict_folder_path), 'fasta')
@@ -36,17 +39,17 @@ protein_features = [sequence_char for sequence in fasta_sequences for sequence_c
 protein_features = [seq_char[0] for seq_char in protein_features]
 
 #Encoding and appending to the trained protein matrix
-pred_obj = PredictProcess(protein_features, concatenate_protein_features, source_score_matrix,
-                          predict_folder_path, source_protein_seq_filepath)
+pred_obj = PredictProcess(protein_features, concatenate_protein_features, adjacency_matrix,
+                          predict_folder_path, source_protein_seq_filepath, protein_family_folder)
 encoded_protein_features = pred_obj.feature_encoder()
 concatenated_protein_features = pred_obj.append_predict_protein()
-adjacency_matrix = pred_obj.adj_matrix()
+mod_adjacency_matrix = pred_obj.adj_matrix()
 
 #Construct all the necessary graph items
-node_indices, neighbor_indices = np.where(adjacency_matrix == 1)
+node_indices, neighbor_indices = np.where(mod_adjacency_matrix == 1)
 graph = GraphInfo(
     edges=(node_indices.tolist(), neighbor_indices.tolist()),
-    num_nodes=adjacency_matrix.shape[0],
+    num_nodes=mod_adjacency_matrix.shape[0],
 )
 graph_info = (concatenated_protein_features,
               np.array(graph.edges, dtype="int32"), None)
