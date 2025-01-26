@@ -14,13 +14,13 @@ hidden_units = [64, 64]
 lstm_hidden_units = [64, 64]
 learning_rate = 0.01
 dropout_rate = 0.5
-num_epochs = 2
+num_epochs = 10
 batch_size = 30
 test_size = 0.3
 num_classes = 106
 
 #SRC files
-protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy")
+protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_pickle=True)
 protein_family_targets = np.load("auxillaryfiles/protein_family_encoded_labels.npy")
 gnn_saved_weights = r"savedweights/gnnweights.weights.h5"
 lstm_saved_weights = r"savedweights/lstmweights.weights.h5"
@@ -32,7 +32,7 @@ x_train, x_test, train_indices, test_indices = xml_data
 y_train, y_test, _, _ = yml_data
 
 #Create a graph info list
-adjacency_matrix = np.load(f"auxillaryfiles/adjmatrix.npy")
+adjacency_matrix = np.load(f"auxillaryfiles/newadjmatrix.npy")
 node_indices, neighbor_indices = np.where(adjacency_matrix == 1)
 graph = GraphInfo(
     edges=(node_indices.tolist(), neighbor_indices.tolist()),
