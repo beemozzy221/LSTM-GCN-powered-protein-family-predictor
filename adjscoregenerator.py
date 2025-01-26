@@ -71,6 +71,32 @@ def create_score_matrix_unaligned(target_fasta, source_fasta):
     return np.array([create_score_unaligned(target_seq.seq, source_seq.seq) for target_seq
                               in target_sequences for source_seq in source_sequences])
 
+def get_family_from_header(header):
+    family_info = header.split('PTHR')[-1]
+    return family_info.split()[0]  # Extract only the family name
+
+def create_new_adjacency_matrix(fasta_file):
+    # Read the FASTA file
+    records = list(SeqIO.parse(fasta_file, "fasta"))
+
+    # Extract families from headers
+    families = [get_family_from_header(record.description) for record in records]
+
+    # Create the adjacency matrix
+    num_sequences = len(records)
+    adj_matrix = np.zeros((num_sequences, num_sequences), dtype=int)
+
+    # Fill the adjacency matrix with 1 for same-family sequences
+    for i in range(num_sequences):
+        for j in range (num_sequences):
+            if families[i] == families[j]:
+                adj_matrix[i][j] = 1
+
+    #Kernal
+    wmask = np.ones([num_sequences, num_sequences]) - np.identity(num_sequences)
+
+    return adj_matrix * wmask, families
+
 if __name__ == "__main__":
     #Generate and store the score matrix
     #score_matrix_ = create_score_matrix(aligned_protein_seq_filepath, entries)
@@ -79,6 +105,10 @@ if __name__ == "__main__":
     #Generate and store the adjacency matrix
     #adj_matrix = compute_adjacency_matrix(np.load("auxillaryfiles/score_matrix_.npy"), sigma)
     #np.save('auxillaryfiles/adj_matrix.npy', adj_matrix)
+
+    #Generate and store the new adjacency matrix
+    #new_adj_matrix, fam = create_new_adjacency_matrix("proteinfastaseq/alignedproseq.fasta")
+    #np.save('auxillaryfiles/newadjmatrix.npy', new_adj_matrix)
 
     print("")
 
