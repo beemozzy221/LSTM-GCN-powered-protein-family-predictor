@@ -5,7 +5,7 @@ from lstmmodel import LSTMModel
 
 
 lstm_hidden_units = [64, 64]
-batch_size_dataset = 1857
+batch_size_dataset = 2033
 batch_size_final = 64
 lstm_input_sequence_length = 12
 lstm_forecast_horizon = 3
@@ -15,10 +15,12 @@ lstm_epochs = 5
 number_of_seq = 255
 
 
-encoded_features = np.load(os.path.abspath(f"../auxillaryfiles/protein_encoded_sequence.npy"))
-encoded_targets = np.load(os.path.abspath(f"../auxillaryfiles/protein_family_encoded_labels.npy"))
+encoded_features = np.load(os.path.abspath(f"../auxillaryfiles/protein_encoded_sequence.npy"), allow_pickle=True)
+encoded_targets = np.load(os.path.abspath(f"../auxillaryfiles/protein_family_encoded_labels.npy"), allow_pickle=True)
 lstm_saved_weights = r"../savedweights/lstmweights.weights.h5"
 
+encoded_features = encoded_features.astype('int32')
+encoded_targets = encoded_targets.astype('int32')
 
 def create_tf_dataset(
     data_array: np.ndarray,
@@ -41,9 +43,7 @@ def create_tf_dataset(
 
 #Create temporal sequences
 flatten_features = encoded_features.reshape(encoded_features.shape[0] * encoded_features.shape[1], encoded_features.shape[2])
-train_dataset = (
-    create_tf_dataset(flatten_features, lstm_input_sequence_length, lstm_forecast_horizon, batch_size_dataset))
-
+train_dataset = create_tf_dataset(flatten_features, lstm_input_sequence_length, lstm_forecast_horizon, batch_size_dataset)
 
 #Initialize the model
 lstm_model = LSTMModel(dataset = train_dataset, seq_length = lstm_input_sequence_length,
