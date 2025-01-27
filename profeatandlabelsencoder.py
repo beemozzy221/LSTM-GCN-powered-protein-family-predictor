@@ -3,7 +3,7 @@ from Bio import SeqIO
 from prelimlabelsencoder import LabelsEncode
 
 inputs = 255
-size_of_seq = 1857
+max_len_of_seq = 2033
 amino_char = 26
 input_file = r"proteinfastaseq/alignedproseq.fasta"
 protein_panther_ids_file = r"proteinfastaseq/uniaccwpan.txt"
@@ -29,8 +29,8 @@ def seq2onehot(seq):
 def ready_encoding(no_seq, protein_length, uniandpanid, aminochars):
 
     #Prepare the arrays
-    unencoded_features_array = np.zeros(shape=protein_length, dtype=object)
-    protein_features = np.zeros(shape=(no_seq, protein_length, aminochars), dtype=int)
+    unencoded_features_array = np.full(protein_length, "-", dtype=object)
+    protein_features = np.full((no_seq, protein_length, aminochars), "-", dtype=object)
     protein_labels = np.zeros(shape=no_seq, dtype=object)
     i = 0
 
@@ -82,7 +82,7 @@ def ready_encoding(no_seq, protein_length, uniandpanid, aminochars):
     return protein_features, protein_labels
 
 if __name__ == "__main__":
-    features, unencoded_labels = ready_encoding(inputs, size_of_seq, protein_panther_ids_file, amino_char)
+    features, unencoded_labels = ready_encoding(inputs, max_len_of_seq, protein_panther_ids_file, amino_char)
     encoder = LabelsEncode(unencoded_labels)
     encoded_labels = encoder.labels2onehot()
 
