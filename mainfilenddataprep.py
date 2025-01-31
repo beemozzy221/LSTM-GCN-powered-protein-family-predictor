@@ -48,8 +48,13 @@ early_stopping = keras.callbacks.EarlyStopping(
         monitor="val_acc", patience=50, restore_best_weights=True
 )
 
-model = GNNNodeClassifier(num_classes=num_classes, lstm_hidden_units=lstm_hidden_units, hidden_units=hidden_units,
-                          graph_info=graph_info, dropout_rate=dropout_rate, lstm_weights=lstm_saved_weights, name="gnn_model")
+model = GNNNodeClassifier(num_classes=num_classes, lstm_hidden_units=lstm_hidden_units,
+                          hidden_units=hidden_units,
+                          graph_info=graph_info,
+                          dropout_rate=dropout_rate,
+                          lstm_weights=lstm_saved_weights,
+                          name="gnn_model")
+
 
 model.compile(
         optimizer=keras.optimizers.Adam(learning_rate),
