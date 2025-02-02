@@ -97,6 +97,12 @@ def muscle_align (protein_fam_path):
         pro_fam_path = os.path.join(os.path.join(protein_fam_path, protein_family))
         if os.listdir(pro_fam_path):
             input_fasta = os.path.join(pro_fam_path, "unalignedproseq.fasta")
+
+            #Threshold value
+            if sum([1 for _ in SeqIO.parse(input_fasta, "fasta")]) < 2:
+                print (f"Skipping {protein_family} as the family didn't reach the threshold value!")
+                continue
+
             output_alignment = os.path.join(pro_fam_path, "alignedproseq.fasta")  # Path to save the aligned sequences
             #Create the MUSCLE command
             muscle_cline = MuscleCommandline(muscle_exe, input=input_fasta, out=output_alignment)
