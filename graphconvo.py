@@ -115,7 +115,7 @@ class GraphConvLayer(layers.Layer):
         # Get node_indices (source) and neighbour_indices (target) from edges.
         node_indices, neighbour_indices = edges[0], edges[1]
         tf.debugging.assert_less(neighbour_indices, tf.shape(node_repesentations)[0],
-                                 message="Indices out of bounds")
+                                 message="Indices out of bounds. if the model is called for prediction, check batch size during prediction!")
 
         # neighbour_repesentations shape is [num_edges, representation_dim].
         neighbour_repesentations = tf.gather(node_repesentations, neighbour_indices)
