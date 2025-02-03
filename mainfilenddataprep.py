@@ -24,6 +24,7 @@ protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_
 protein_family_targets = np.load("auxillaryfiles/protein_family_encoded_labels.npy")
 gnn_saved_weights = r"savedweights/gnnweights.weights.h5"
 lstm_saved_weights = r"savedweights/lstmweights.weights.h5"
+num_classes = len(np.unique(protein_family_targets, axis=0))
 
 #Create train,test,validate object
 train_test_split = TrainTestVaiCreate(protein_features, protein_family_targets)
