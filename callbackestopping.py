@@ -16,8 +16,12 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
         if self._model is None:
             raise Exception("No model is set!")
         if self.monitor == "loss":
-            self.epoch_info[epoch] = {"loss": logs["loss"],
-                                      "weights": self._model.get_weights()}
+            self.epoch_info[epoch] = {"loss": logs["loss"]}
+
+            temp_weights = {}
+            if self.restore_best_weights:
+                if epoch % self.patience == 0:
+                    temp_weights = {"previous_weights": self._model.get_weights()}
 
             if epoch > self.patience:
                 if self.wait > self.patience:
