@@ -15,6 +15,8 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         if self._model is None:
             raise Exception("No model is set!")
+        if self.patience == 0:
+            raise Exception("Patience value should be a value greater than 0")
         if self.monitor == "loss":
             self.epoch_info[epoch] = {"loss": logs["loss"]}
 
