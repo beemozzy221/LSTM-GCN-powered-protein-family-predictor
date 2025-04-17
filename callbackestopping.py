@@ -21,7 +21,6 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
         if self.monitor == "val_loss":
             self.epoch_info[epoch] = {"val_loss": logs["val_loss"]}
 
-            temp_weights = {}
             if self.restore_best_weights:
                 if epoch % self.patience == 0:
                     temp_weights = {"previous_weights": self._model.get_weights()}
