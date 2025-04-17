@@ -42,7 +42,7 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
                     raise StopIteration("Model early stopped")
 
         else:
-            warnings.warn("No value to monitor, callback hibernating")
+            warnings.warn("Monitoring validation loss by default")
 
     def set_model(self, model):
         self._model = model
