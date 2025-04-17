@@ -23,7 +23,7 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
 
             if self.restore_best_weights:
                 if epoch % self.patience == 0:
-                    temp_weights = {"previous_weights": self._model.get_weights()}
+                    self.temp_weights["previous_weights"] = self._model.get_weights()
 
             if epoch > self.patience:
                 if tf.round(self.epoch_info[epoch]["loss"] * 100) / 100 == tf.round(
