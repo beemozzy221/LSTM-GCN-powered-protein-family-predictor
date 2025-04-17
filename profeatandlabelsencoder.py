@@ -103,7 +103,7 @@ def modified_ready_encoding(no_seq, protein_length, aminochars):
     return protein_features, protein_labels
 
 if __name__ == "__main__":
-    features, unencoded_labels = ready_encoding(inputs, max_len_of_seq, protein_panther_ids_file, amino_char)
+    features, unencoded_labels = modified_ready_encoding(inputs, max_len_of_seq, amino_char)
     encoder = LabelsEncode(unencoded_labels)
     encoded_labels = encoder.labels2onehot()
 
