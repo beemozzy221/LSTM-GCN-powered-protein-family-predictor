@@ -18,8 +18,8 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
             raise Exception("No model is set!")
         if self.patience == 0:
             raise Exception("Patience value should be a value greater than 0")
-        if self.monitor == "loss":
-            self.epoch_info[epoch] = {"loss": logs["loss"]}
+        if self.monitor == "val_loss":
+            self.epoch_info[epoch] = {"val_loss": logs["val_loss"]}
 
             temp_weights = {}
             if self.restore_best_weights:
