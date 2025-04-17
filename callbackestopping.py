@@ -2,7 +2,7 @@ import warnings
 import tensorflow as tf
 
 class CusEarlyStopping(tf.keras.callbacks.Callback):
-    def __init__(self, patience=0, monitor="loss", restore_best_weights=False):
+    def __init__(self, patience=0, monitor="val_loss", restore_best_weights=False):
         super().__init__()
         self.patience = patience
         self.monitor = monitor
