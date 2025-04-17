@@ -81,6 +81,27 @@ def ready_encoding(no_seq, protein_length, uniandpanid, aminochars):
 
     return protein_features, protein_labels
 
+def modified_ready_encoding(no_seq, protein_length, aminochars):
+    # Prepare the arrays
+    unencoded_features_array = np.full(protein_length, "-", dtype=object)
+    protein_features = np.full((no_seq, protein_length, aminochars), "-", dtype=object)
+    protein_labels = np.zeros(shape=no_seq, dtype=object)
+
+    # Parse the FASTA files
+    fasta_sequences = SeqIO.parse(open(input_file), 'fasta')
+    for no, fasta in enumerate(fasta_sequences):
+        pro_id, sequence = fasta.id, str(fasta.seq)
+        panther_id = fasta.description.split(maxsplit=1)[1]
+
+        # Convert the Panther ID to string and write to the protein list
+        protein_labels[no] = panther_id
+
+        for char_no, protein_chars in enumerate(sequence):
+            unencoded_features_array[char_no] = protein_chars
+            protein_features[no] = seq2onehot(unencoded_features_array)
+
+    return protein_features, protein_labels
+
 if __name__ == "__main__":
     features, unencoded_labels = ready_encoding(inputs, max_len_of_seq, protein_panther_ids_file, amino_char)
     encoder = LabelsEncode(unencoded_labels)
