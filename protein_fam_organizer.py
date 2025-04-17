@@ -164,7 +164,7 @@ if __name__=="__main__":
     #muscle_align(target_folder_path)
 
     #Execute writing to MAIN FILE ALIGNED SEQUENCE
-    read_all_pro_files_and_write_aligned_seq(target_folder_path)
+    #read_all_pro_files_and_write_aligned_seq(target_folder_path)
 
     #Get maximum length for padding
     get_max_length(target_aligned_protein_path)
