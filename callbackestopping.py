@@ -11,6 +11,7 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
         self.stopped_epoch = 0
         self._model = None
         self.restore_best_weights = restore_best_weights
+        self.temp_weights = {}
 
     def on_epoch_end(self, epoch, logs=None):
         if self._model is None:
