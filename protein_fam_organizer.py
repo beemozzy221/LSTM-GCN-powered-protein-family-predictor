@@ -154,7 +154,7 @@ if __name__=="__main__":
     #create_protein_fam_directory(pro_fam_folder, target_folder_path)
 
     #Get the protein family dictionary
-    protein_dict = create_dict_pantid_uniprotid(pro_fam_folder, target_unaligned_protein_path)
+    #protein_dict = create_dict_pantid_uniprotid(pro_fam_folder, target_unaligned_protein_path)
 
     #Store to each file as unaligned FASTA
     #store_protein_dictionary(protein_dict, target_folder_path)
