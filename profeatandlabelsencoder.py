@@ -2,8 +2,8 @@ import numpy as np
 from Bio import SeqIO
 from prelimlabelsencoder import LabelsEncode
 
-inputs = 255
-max_len_of_seq = 2033
+inputs = 7938
+max_len_of_seq = 2287
 amino_char = 26
 input_file = r"proteinfastaseq/alignedproseq.fasta"
 protein_panther_ids_file = r"proteinfastaseq/uniaccwpan.txt"
