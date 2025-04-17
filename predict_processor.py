@@ -52,7 +52,7 @@ class PredictProcess:
         homogenized_predict_row = [ent for pro_fam in predict_row for ent in pro_fam]
         homogenized_predict_row = np.append(homogenized_predict_row, np.array([0]))
 
-        w_mask = np.ones(self.adjacency_matrix.shape[0]+1)
+        w_mask = np.ones(self.adjacency_matrix.shape[0] + 1)
         predict_row = (homogenized_predict_row >= 800) * w_mask
 
         predict_adj_matrix[-1, :] = predict_row
