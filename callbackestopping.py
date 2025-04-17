@@ -35,7 +35,7 @@ class CusEarlyStopping(tf.keras.callbacks.Callback):
 
                 if self.wait > self.patience:
                     if self.restore_best_weights:
-                        self._model.set_weights(temp_weights["previous_weights"])
+                        self._model.set_weights(self.temp_weights["previous_weights"])
                     self.stopped_epoch = epoch
                     print(f"Model stopped by early stopping callback at epoch: {self.stopped_epoch}")
                     
