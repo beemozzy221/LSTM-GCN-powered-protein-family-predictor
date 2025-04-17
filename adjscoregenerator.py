@@ -97,7 +97,7 @@ def create_new_adjacency_matrix(fasta_file):
 
     # Fill the adjacency matrix with 1 for same-family sequences
     for i in range(num_sequences):
-        for j in range (num_sequences):
+        for j in range(num_sequences):
             if families[i] == families[j]:
                 adj_matrix[i][j] = 1
 
