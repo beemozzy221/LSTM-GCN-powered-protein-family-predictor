@@ -68,6 +68,10 @@ def create_score_matrix_unaligned(target_fasta, source_fasta):
     source_sequences = list(SeqIO.parse(open(source_fasta), 'fasta'))
     assert len(target_sequences) == 1, "Only one sequence can be processed at a time!"
 
+    if len(source_sequences) < 10:
+        print("Threshold requirement not met!")
+        return
+
     try:
         representative_sequence = source_sequences[0].seq
         score = create_score_unaligned(representative_sequence, target_sequences[0].seq)
