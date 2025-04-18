@@ -3,7 +3,6 @@ import numpy as np
 import tensorflow as tf
 from lstmmodel import LSTMModel
 
-
 lstm_hidden_units = [64, 64]
 batch_size_dataset = 2287
 batch_size_final = 64
