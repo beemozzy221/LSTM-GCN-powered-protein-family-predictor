@@ -99,7 +99,7 @@ def muscle_align (protein_fam_path):
             input_fasta = os.path.join(pro_fam_path, "unalignedproseq.fasta")
 
             #Threshold value
-            if sum([1 for _ in SeqIO.parse(input_fasta, "fasta")]) < 2:
+            if sum([1 for _ in SeqIO.parse(input_fasta, "fasta")]) < 10:
                 print (f"Skipping {protein_family} as the family didn't reach the threshold value!")
                 continue
 
