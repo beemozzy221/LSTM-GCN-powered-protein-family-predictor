@@ -12,7 +12,6 @@ lstm_forecast_horizon = 3
 feature_space = 26
 lstm_learning_rate = 0.01
 lstm_epochs = 5
-number_of_seq = 255
 
 
 encoded_features = np.load(os.path.abspath(f"../auxillaryfiles/protein_encoded_sequence.npy"), allow_pickle=True)
