@@ -5,7 +5,7 @@ from lstmmodel import LSTMModel
 
 
 lstm_hidden_units = [64, 64]
-batch_size_dataset = 2033
+batch_size_dataset = 2287
 batch_size_final = 64
 lstm_input_sequence_length = 12
 lstm_forecast_horizon = 3
