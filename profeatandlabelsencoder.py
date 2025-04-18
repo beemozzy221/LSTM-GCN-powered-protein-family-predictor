@@ -91,7 +91,7 @@ def modified_ready_encoding(no_seq, protein_length, aminochars):
     fasta_sequences = SeqIO.parse(open(input_file), 'fasta')
     for no, fasta in enumerate(fasta_sequences):
         print(f"Now processing for sequence {no}")
-        
+
         pro_id, sequence = fasta.id, str(fasta.seq)
         panther_id = fasta.description.split(maxsplit=1)[1]
 
