@@ -3,9 +3,6 @@ from Bio import SeqIO
 from Bio import Align
 from Bio.pairwise2 import align
 
-aligned_protein_seq_filepath = r"proteinfastaseq/aligned_protein_seq_filepath.fasta"
-entries = 255
-
 def compute_adjacency_matrix (sequence_distances:np.ndarray, similarity_threshold:int):
     """Computes the adjacency matrix from distances matrix.
 
@@ -68,9 +65,10 @@ def create_score_matrix_unaligned(target_fasta, source_fasta):
     source_sequences = list(SeqIO.parse(open(source_fasta), 'fasta'))
     assert len(target_sequences) == 1, "Only one sequence can be processed at a time!"
 
-    if len(source_sequences) < 10:
-        print("Threshold requirement not met!")
-        return
+    #Due to conflicting threshold values, the author had to comment this section out
+    #if len(source_sequences) < 10:
+        #print("Threshold requirement not met!")
+        #return
 
     try:
         representative_sequence = source_sequences[0].seq
@@ -81,7 +79,7 @@ def create_score_matrix_unaligned(target_fasta, source_fasta):
         print("No sequences in the family!")
 
 def get_family_from_header(header):
-    family_info = header.split('PTHR')[-1]
+    family_info = header.split('PTF_')[-1]
     return family_info.split()[0]  # Extract only the family name
 
 def create_new_adjacency_matrix(fasta_file):
@@ -116,8 +114,8 @@ if __name__ == "__main__":
     #np.save('auxillaryfiles/adj_matrix.npy', adj_matrix)
 
     #Generate and store the new adjacency matrix
-    #new_adj_matrix, fam = create_new_adjacency_matrix("proteinfastaseq/alignedproseq.fasta")
-    #np.save('auxillaryfiles/newadjmatrix.npy', new_adj_matrix)
+    new_adj_matrix, fam = create_new_adjacency_matrix("proteinfastaseq/alignedproseq.fasta")
+    np.save('auxillaryfiles/newadjmatrix.npy', new_adj_matrix)
 
     print("")
 

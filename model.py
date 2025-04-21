@@ -1,7 +1,7 @@
 import keras
 import numpy as np
 import tensorflow as tf
-from keras.src import layers
+from keras.src import layers, ops
 from keras.src.layers import LSTM
 from graphconvo import GraphConvLayer
 
@@ -31,7 +31,8 @@ class GNNNodeClassifier(tf.keras.Model):
         lstm_weights,
         lstm_hidden_units,
         hidden_units,
-        graph_info,
+        protein_length,
+        protein_chars,
         aggregation_type="sum",
         combination_type="concat",
         dropout_rate=0.2,
@@ -40,25 +41,19 @@ class GNNNodeClassifier(tf.keras.Model):
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
+        #Get sequence lengths
+        self.protein_length = protein_length
+        self.protein_chars = protein_chars
 
         #Unpack to give to get_config
         self.hidden_units = hidden_units
-        self.graph_info = graph_info
         self.num_classes = num_classes
         self.lstm_hidden_units = lstm_hidden_units
         self.lstm_weights = lstm_weights
 
-        #Unpack graph_info to three elements: node_features, edges, and edge_weight.
-        node_features, edges, edge_weights = graph_info
-        self.node_features = node_features
-        self.edges = edges
-        self.edge_weights = edge_weights
+        #Meant to be used in def call
+        self.g_obj = None
 
-        # Set edge_weights to ones if not provided.
-        if self.edge_weights is None:
-            self.edge_weights = tf.ones(shape=edges.shape[1])
-        # Scale edge_weights to sum to 1.
-        self.edge_weights = self.edge_weights / tf.math.reduce_sum(self.edge_weights)
         #Create preprocess layer
         #self.preprocess = create_ffn(hidden_units, dropout_rate, name = "preprocess")
 
@@ -89,26 +84,33 @@ class GNNNodeClassifier(tf.keras.Model):
         self.compute_logits = layers.Dense(units=num_classes, name="logits")
 
         #Build LSTM layer and load weights
-        self.preprocess_lstm_layer.build(input_shape=(None, *node_features.shape[1:]))
+        self.preprocess_lstm_layer.build(input_shape=(None, protein_length, protein_chars))
         self.preprocess_lstm_layer.load_weights(lstm_weights)
 
-    def call(self, input_node_indices):
+    def call(self, inputs):
+        edges, edge_weights = self.g_obj
+        #Unpack graph objects
+        node_features = inputs
+        node_features = tf.cast(node_features, dtype="int32")
+        edges = tf.cast(edges, dtype="int32")
+
+        #For initializing the edge weights
+        if edge_weights is None:
+            edge_weights = tf.ones(shape=edges.shape[1])
+        # Scale edge_weights to sum to 1.
+        edge_weights = edge_weights / tf.math.reduce_sum(edge_weights)
 
         #LSTM preprocessing layer
-        x1 = self.preprocess_lstm_layer(self.node_features)
+        x1 = self.preprocess_lstm_layer(node_features)
 
         # Apply the first graph conv layer
-        x2 = self.conv1((x1, self.edges, self.edge_weights))
+        x2 = self.conv1((x1, edges, edge_weights))
 
         # Apply the second graph conv layer
-        x3 = self.conv2((x2, self.edges, self.edge_weights))
+        x3 = self.conv2((x2, edges, edge_weights))
 
         # Postprocess node embedding
-        x4 = self.postprocess(x3)
-        
-        # Fetch node embeddings for the input node_indices
-        input_node_indices = tf.cast(input_node_indices, dtype="int32")
-        node_embeddings = tf.gather(x4, input_node_indices)
+        node_embeddings = self.postprocess(x3)
 
         # Compute logits
         return self.compute_logits(node_embeddings)
@@ -122,7 +124,9 @@ class GNNNodeClassifier(tf.keras.Model):
                 "graph_info": self.graph_info,
                 "num_classes": self.num_classes,
                 "lstm_hidden_units": self.lstm_hidden_units,
-                "lstm_weights": self.lstm_weights
+                "lstm_weights": self.lstm_weights,
+                "protein_chars": self.protein_chars,
+                "protein_length": self.protein_length
             }
         )
         return config
