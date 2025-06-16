@@ -108,11 +108,11 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     #Visualize the results
     probabilities = softmax(logits)
 
-# Indices of the top 5 probabilities
-top_indices = np.argsort(probabilities[-1])[::-1][:10]
-top_probabilities = probabilities[-1][top_indices]
-top_classes = [str(class_) for class_ in top_indices]
-print(f"Most probable class: {top_indices[0]}")
+    # Indices of the top 5 probabilities
+    top_indices = np.argsort(probabilities[-1])[::-1][:10]
+    top_probabilities = probabilities[-1][top_indices]
+    top_classes = [str(class_) for class_ in top_indices]
+    print(f"Most probable class: {top_indices[0]}")
 
 plt.figure(figsize=(8, 5))
 plt.bar(top_classes, top_probabilities, color='skyblue', tick_label=top_classes)
