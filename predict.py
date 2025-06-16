@@ -74,10 +74,10 @@ neighbour_protein_features = concatenate_protein_features[predict_neighbour_indi
 predict_concatenated_protein_features = np.concatenate((neighbour_protein_features,
                                                        np.expand_dims(concatenated_protein_features[-1], axis=0)), axis=0)
 
-#adjacency matrix generation
-predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
-predict_neighbour_indices = np.append(predict_neighbour_indices, np.array([predict_index]), axis=0)
-mod_new_adj = mod_adjacency_matrix[predict_neighbour_indices, :][:, predict_neighbour_indices]
+    #adjacency matrix generation
+    predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
+    predict_neighbour_indices = np.append(predict_neighbour_indices, np.array([predict_index]), axis=0)
+    mod_new_adj = mod_adjacency_matrix[predict_neighbour_indices, :][:, predict_neighbour_indices]
 
 #Construct all the necessary graph items
 node_indices, neighbor_indices = np.where(mod_new_adj == 1)
