@@ -57,10 +57,10 @@ def predict_seq(seq_loc, seq_id):
     concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_pickle=True)
     adjacency_matrix = np.load(r"auxillaryfiles/newadjmatrix.npy")
 
-#Encode the to-be-predicted FASTA file
-fasta_sequences = SeqIO.parse(open(predict_folder_path), 'fasta')
-protein_features = [sequence_char for sequence in fasta_sequences for sequence_char in sequence.seq]
-protein_features = [seq_char[0] for seq_char in protein_features]
+    #Encode the to-be-predicted FASTA file
+    fasta_sequences = SeqIO.parse(open(predict_folder_path), 'fasta')
+    protein_features = [sequence_char for sequence in fasta_sequences for sequence_char in sequence.seq]
+    protein_features = [seq_char[0] for seq_char in protein_features]
 
     #Encoding and appending to the trained protein matrix
     pred_obj = PredictProcess(protein_features, concatenate_protein_features, adjacency_matrix,
