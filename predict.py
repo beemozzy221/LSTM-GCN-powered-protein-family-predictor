@@ -48,14 +48,14 @@ def predict_seq(seq_loc, seq_id):
     protein_length = 2287
     protein_chars = 26
 
-#Load all files
-gnn_weights = r"savedweights/gnnweights.weights.h5"
-lstm_weights = r"savedweights/lstmweights.weights.h5"
-predict_folder_path = r"predict/predict.fasta"
-source_protein_seq_filepath = r"proteinfastaseq/alignedproseq.fasta"
-protein_family_folder = r"unaligned_protein_families"
-concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_pickle=True)
-adjacency_matrix = np.load(r"auxillaryfiles/newadjmatrix.npy")
+    #Load all files
+    gnn_weights = r"savedweights/gnnweights.weights.h5"
+    lstm_weights = r"savedweights/lstmweights.weights.h5"
+    predict_folder_path = seq_loc
+    source_protein_seq_filepath = r"proteinfastaseq/alignedproseq.fasta"
+    protein_family_folder = r"unaligned_protein_families"
+    concatenate_protein_features = np.load("auxillaryfiles/protein_encoded_sequence.npy", allow_pickle=True)
+    adjacency_matrix = np.load(r"auxillaryfiles/newadjmatrix.npy")
 
 #Encode the to-be-predicted FASTA file
 fasta_sequences = SeqIO.parse(open(predict_folder_path), 'fasta')
