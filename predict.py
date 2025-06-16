@@ -138,16 +138,3 @@ if __name__ == "__main__":
         if filename.endswith(".fasta"):
             predict_filepath = os.path.join("predict", filename)
             predict_seq(predict_filepath, filename)
-
-
-
-
-
-
-
-  
-
-
-
-
-
