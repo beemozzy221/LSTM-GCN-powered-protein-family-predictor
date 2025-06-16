@@ -133,6 +133,13 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
                                      seq_id, probabilities[0], results)
             print(f"Sample {i} results insignificant")
 
+if __name__ == "__main__":
+    for filename in os.listdir("predict"):
+        if filename.endswith(".fasta"):
+            predict_filepath = os.path.join("predict", filename)
+            predict_seq(predict_filepath, filename)
+
+
 
 
 
