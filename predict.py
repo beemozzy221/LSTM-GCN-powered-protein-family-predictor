@@ -123,12 +123,15 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     plt.tight_layout()
     plt.savefig(f"graphs/top5_classes_{seq_id}.png", dpi=300)pc
 
-
-for i, results in entropy_results(probabilities):
-    if results > 0.5:
-        print(f"Sample {i} results significant")
-    else:
-        print(f"Sample {i} results insignificant")
+    for i, results in enumerate(entropy_results(probabilities)):
+        if results > 0.7:
+            append_prediction_to_txt("model_predictions", "model_predictions.txt",
+                                     seq_id, probabilities[0], results)
+            print(f"Sample {i} results significant")
+        else:
+            append_prediction_to_txt("model_predictions", "model_predictions.txt",
+                                     seq_id, probabilities[0], results)
+            print(f"Sample {i} results insignificant")
 
 
 
