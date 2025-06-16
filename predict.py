@@ -114,14 +114,14 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     top_classes = [str(class_) for class_ in top_indices]
     print(f"Most probable class: {top_indices[0]}")
 
-plt.figure(figsize=(8, 5))
-plt.bar(top_classes, top_probabilities, color='skyblue', tick_label=top_classes)
-plt.xlabel("Class")
-plt.ylabel("Probability")
-plt.title("Top 5 Probable Classes")
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+    plt.figure(figsize=(8, 5))
+    plt.bar(top_classes, top_probabilities, color='skyblue', tick_label=top_classes)
+    plt.xlabel("Class")
+    plt.ylabel("Probability")
+    plt.title("Top 5 Probable Classes")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig(f"graphs/top5_classes_{seq_id}.png", dpi=300)pc
 
 
 for i, results in entropy_results(probabilities):
