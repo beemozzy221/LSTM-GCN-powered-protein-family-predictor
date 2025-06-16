@@ -68,11 +68,11 @@ def predict_seq(seq_loc, seq_id):
     concatenated_protein_features = pred_obj.append_predict_protein()
     mod_adjacency_matrix = pred_obj.adj_matrix()
 
-#Isolating the neighbour nodes and features of the target node
-predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
-neighbour_protein_features = concatenate_protein_features[predict_neighbour_indices]
-predict_concatenated_protein_features = np.concatenate((neighbour_protein_features,
-                                                       np.expand_dims(concatenated_protein_features[-1], axis=0)), axis=0)
+    #Isolating the neighbour nodes and features of the target node
+    predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
+    neighbour_protein_features = concatenate_protein_features[predict_neighbour_indices]
+    predict_concatenated_protein_features = np.concatenate((neighbour_protein_features,
+                                                           np.expand_dims(concatenated_protein_features[-1], axis=0)), axis=0)
 
     #adjacency matrix generation
     predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
