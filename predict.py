@@ -105,8 +105,8 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     model.g_obj = graph_info
     logits = model.predict(predict_concatenated_protein_features, batch_size=128)
 
-#Visualize the results
-probabilities = softmax(logits)
+    #Visualize the results
+    probabilities = softmax(logits)
 
 # Indices of the top 5 probabilities
 top_indices = np.argsort(probabilities[-1])[::-1][:10]
