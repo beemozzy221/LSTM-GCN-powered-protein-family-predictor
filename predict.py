@@ -88,16 +88,16 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     graph_info = [np.array(graph.edges, dtype="int32"), None]
     print(f"number of nodes: {graph.num_nodes}, number of edges: {len(graph.edges[0])}")
 
-#Construct the model
-model = GNNNodeClassifier(num_classes=num_classes, hidden_units=hidden_units,
-                          dropout_rate=dropout_rate, lstm_weights=lstm_weights,
-                          lstm_hidden_units=lstm_hidden_units,
-                          protein_length = protein_length,
-                          protein_chars = protein_chars,
-                          name="gnn_model")
-model.build(input_shape=(None, ))
-model.load_weights(gnn_weights)
-model.summary()
+    #Construct the model
+    model = GNNNodeClassifier(num_classes=num_classes, hidden_units=hidden_units,
+                              dropout_rate=dropout_rate, lstm_weights=lstm_weights,
+                              lstm_hidden_units=lstm_hidden_units,
+                              protein_length = protein_length,
+                              protein_chars = protein_chars,
+                              name="gnn_model")
+    model.build(input_shape=(None, ))
+    model.load_weights(gnn_weights)
+    model.summary()
 
 #Predict
 predict_concatenated_protein_features = np.array(predict_concatenated_protein_features,
