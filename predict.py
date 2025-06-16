@@ -79,14 +79,14 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     predict_neighbour_indices = np.append(predict_neighbour_indices, np.array([predict_index]), axis=0)
     mod_new_adj = mod_adjacency_matrix[predict_neighbour_indices, :][:, predict_neighbour_indices]
 
-#Construct all the necessary graph items
-node_indices, neighbor_indices = np.where(mod_new_adj == 1)
-graph = GraphInfo(
-    edges=(node_indices.tolist(), neighbor_indices.tolist()),
-    num_nodes=mod_new_adj.shape[0],
-)
-graph_info = [np.array(graph.edges, dtype="int32"), None]
-print(f"number of nodes: {graph.num_nodes}, number of edges: {len(graph.edges[0])}")
+    #Construct all the necessary graph items
+    node_indices, neighbor_indices = np.where(mod_new_adj == 1)
+    graph = GraphInfo(
+        edges=(node_indices.tolist(), neighbor_indices.tolist()),
+        num_nodes=mod_new_adj.shape[0],
+    )
+    graph_info = [np.array(graph.edges, dtype="int32"), None]
+    print(f"number of nodes: {graph.num_nodes}, number of edges: {len(graph.edges[0])}")
 
 #Construct the model
 model = GNNNodeClassifier(num_classes=num_classes, hidden_units=hidden_units,
