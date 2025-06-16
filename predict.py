@@ -121,7 +121,7 @@ def predict_seq(seq_loc, seq_id):
     plt.title("Top 5 Probable Classes")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig(f"graphs/top5_classes_{seq_id}.png", dpi=300)pc
+    plt.savefig(f"graphs/top5_classes_{seq_id}.png", dpi=300)
 
     for i, results in enumerate(entropy_results(probabilities)):
         if results > 0.7:
