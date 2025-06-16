@@ -99,11 +99,11 @@ predict_concatenated_protein_features = np.concatenate((neighbour_protein_featur
     model.load_weights(gnn_weights)
     model.summary()
 
-#Predict
-predict_concatenated_protein_features = np.array(predict_concatenated_protein_features,
-                                                 dtype="float32")
-model.g_obj = graph_info
-logits = model.predict(predict_concatenated_protein_features, batch_size=128)
+    #Predict
+    predict_concatenated_protein_features = np.array(predict_concatenated_protein_features,
+                                                     dtype="float32")
+    model.g_obj = graph_info
+    logits = model.predict(predict_concatenated_protein_features, batch_size=128)
 
 #Visualize the results
 probabilities = softmax(logits)
