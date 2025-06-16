@@ -62,11 +62,11 @@ fasta_sequences = SeqIO.parse(open(predict_folder_path), 'fasta')
 protein_features = [sequence_char for sequence in fasta_sequences for sequence_char in sequence.seq]
 protein_features = [seq_char[0] for seq_char in protein_features]
 
-#Encoding and appending to the trained protein matrix
-pred_obj = PredictProcess(protein_features, concatenate_protein_features, adjacency_matrix,
-                         predict_folder_path, source_protein_seq_filepath, protein_family_folder)
-concatenated_protein_features = pred_obj.append_predict_protein()
-mod_adjacency_matrix = pred_obj.adj_matrix()
+    #Encoding and appending to the trained protein matrix
+    pred_obj = PredictProcess(protein_features, concatenate_protein_features, adjacency_matrix,
+                             predict_folder_path, source_protein_seq_filepath, protein_family_folder)
+    concatenated_protein_features = pred_obj.append_predict_protein()
+    mod_adjacency_matrix = pred_obj.adj_matrix()
 
 #Isolating the neighbour nodes and features of the target node
 predict_neighbour_indices = np.array(np.where(mod_adjacency_matrix[predict_index] == 1))[0]
