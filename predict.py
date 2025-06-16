@@ -27,13 +27,26 @@ def entropy_results(probs):
     normalized_entropy = entropy / max_entropy
     return normalized_entropy
 
-hidden_units = [64, 64]
-lstm_hidden_units = [64, 64]
-dropout_rate = 0.5
-num_classes = 11
-predict_index = 7938
-protein_length = 2287
-protein_chars = 26
+def append_prediction_to_txt(output_folder, output_text, seq_id, class_probs, entropy):
+    os.makedirs(output_folder, exist_ok=True)
+    filepath = os.path.join(output_folder, output_text)
+
+    with open(filepath, 'a') as f:
+        f.write(f"Sequence ID: {seq_id}\n")
+        f.write("Class Probabilities:\n")
+        for i, prob in enumerate(class_probs):
+            f.write(f"  Class {i}: {prob:.4f}\n")
+        f.write(f"Entropy: {entropy:.4f}\n")
+        f.write("-" * 40 + "\n")
+
+def predict_seq(seq_loc, seq_id):
+    hidden_units = [64, 64]
+    lstm_hidden_units = [64, 64]
+    dropout_rate = 0.5
+    num_classes = 11
+    predict_index = 7938
+    protein_length = 2287
+    protein_chars = 26
 
 #Load all files
 gnn_weights = r"savedweights/gnnweights.weights.h5"
